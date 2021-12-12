@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+import django_heroku
 
 from pathlib import Path
 
@@ -25,11 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '&9!lz0%ojavpnu4eg)zmiiiis-g&4_mt8rux!hqrafh8**=o3e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['127.0.0.1']
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['http://www.berkeresturant.shop']
 
 # Application definition
 
@@ -170,4 +171,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 ###################################
+django_heroku.settings(locals())
