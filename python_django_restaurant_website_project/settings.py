@@ -92,7 +92,6 @@ WSGI_APPLICATION = 'python_django_restaurant_website_project.wsgi.application'
 # }
 
 
-
 DATABASES = {
 
     'default': {
@@ -153,11 +152,11 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT: str = os.path.join(BASE_DIR, 'uploads/')
 
-#...
+# ...
 SITE_ID = 1
 
 ####################################
-    ##  CKEDITOR CONFIGURATION ##
+##  CKEDITOR CONFIGURATION ##
 ####################################
 
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
