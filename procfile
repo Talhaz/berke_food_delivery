@@ -1,1 +1,1 @@
-web: gunicorn berke_food_delivery.wsgi
+web: gunicorn python_django_restaurant_website_project.wsgi
