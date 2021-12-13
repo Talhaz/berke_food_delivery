@@ -30,7 +30,8 @@ DEBUG = False
 
 # ALLOWED_HOSTS = ['127.0.0.1']
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['http://www.berkeresturant.shop']
+ALLOWED_HOSTS = ['*', 'berke-food-delivery.herokuapp.com',
+                 'http://www.berkeresturant.shop']
 
 # Application definition
 
