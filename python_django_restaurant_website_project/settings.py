@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import dj_database_url
 import os
 import django_heroku
 
@@ -30,8 +31,10 @@ DEBUG = False
 
 # ALLOWED_HOSTS = ['127.0.0.1']
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['*', 'berke-food-delivery.herokuapp.com',
-                 'http://www.berkeresturant.shop']
+# ALLOWED_HOSTS = ['*', 'berke-food-delivery.herokuapp.com',
+#                  'http://www.berkeresturant.shop']
+
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 # Application definition
 
@@ -48,12 +51,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'ckeditor_uploader',
+    'whitenoise.runserver_nostatic',
     'mptt',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -112,6 +116,9 @@ DATABASES = {
 
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -172,7 +179,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'home/static')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ###################################
 django_heroku.settings(locals())
