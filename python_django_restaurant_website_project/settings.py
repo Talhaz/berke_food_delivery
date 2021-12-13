@@ -27,14 +27,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '&9!lz0%ojavpnu4eg)zmiiiis-g&4_mt8rux!hqrafh8**=o3e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = ['127.0.0.1']
 # ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['*', 'berke-food-delivery.herokuapp.com',
 #                  'http://www.berkeresturant.shop']
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com','www.berkeresturant.shop']
 
 # Application definition
 
@@ -158,6 +158,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, "staticfiles"),
+# )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT: str = os.path.join(BASE_DIR, 'uploads/')
 
@@ -179,7 +187,6 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'home/static')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 ###################################
 django_heroku.settings(locals())
