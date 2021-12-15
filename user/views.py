@@ -69,6 +69,7 @@ def signup_view(request):
             data = UserProfile()
             data.user_id = current_user.id
             data.image = "images/users/user.png"
+            data.address=request.POST['address']
             data.save()
             return HttpResponseRedirect('/')
 
@@ -155,11 +156,16 @@ def orders(request):
     else:
         profile = None
     orders = Order.objects.filter(user_id=current_user.id).order_by('-create_at')
-    print("type:",type(Order.objects.values('total')[0]['total']),Order.objects.values('total')[0]['total']+49)
-    print(Order.objects.values())
+    # print("type:",type(Order.objects.values('total')[0]['total']),Order.objects.values('total')[0]['total']+49)
+    # print(Order.objects.values())
+    
     f=Order.objects.filter(user_id=current_user.id)
     # orders.AddField(value=d)
-    d=f.values('total')[0]['total']+49 
+    print(len(f),type(len(f)))
+    if len(f) !=0:
+        d=f.values('total')[0]['total']+49 
+    else:
+        d=None;
     context = {
         'totalf':d,
         'orders': orders,
@@ -181,7 +187,13 @@ def orderdetail(request, id):
         profile = None
     order = Order.objects.get(user_id=current_user.id, id=id)
     orderItems = OrderProduct.objects.filter(order_id=id).order_by('-create_at')
+    f=Order.objects.filter(user_id=current_user.id)
+    if len(f) !=0:
+            d=f.values('total')[0]['total']+49 
+    else:
+        d=None;
     context = {
+        'totalf':d,
         'order': order,
         'orderItems': orderItems,
         'category': category,

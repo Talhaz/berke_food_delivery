@@ -15,7 +15,7 @@ class Order(models.Model):
         ('Canceled', 'Canceled'),
     )
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    table_no = models.IntegerField(unique=True)
+    table_no = models.IntegerField()
     total = models.FloatField()
     status = models.CharField(max_length=10, choices=STATUS, default='New')
     note = models.CharField(blank=True, max_length=100)
@@ -30,12 +30,12 @@ class Order(models.Model):
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        fields = ['user']
+        fields = ['table_no']
 
 
 class OrderProduct(models.Model):
     STATUS = (
-        ('New', 'New'),
+        ('InProgress', 'InProgress'),
         ('Accepted', 'Accepted'),
         ('Canceled', 'Canceled'),
     )
@@ -45,7 +45,7 @@ class OrderProduct(models.Model):
     price = models.FloatField()
     amount = models.FloatField()
     total = models.FloatField()
-    status = models.CharField(max_length=10, choices=STATUS, default='New')
+    status = models.CharField(max_length=10, choices=STATUS, default='InProgress')
     note = models.CharField(blank=True, max_length=100)
     ip = models.CharField(blank=True, max_length=20)
     create_at = models.DateTimeField(auto_now_add=True)

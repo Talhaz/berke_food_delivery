@@ -34,7 +34,7 @@
                                     <th class="t-left">Title</th>
                                     <th class="t-left">Price</th>
                                     <th class="t-left">Amount</th>
-                                    <th class="t-left">Total</th>
+                                    {% comment %} <th class="t-left">Total</th> {% endcomment %}
                                     <th class="t-left">Status</th>
                                     <th class="t-left">Date</th>
                                 </tr>
@@ -48,13 +48,54 @@
                                         <td class="t-left"><a href="/product/{{ rs.product_id }}/{{ rs.product.slug }}"> {{ rs.product.title }} </a></td>
                                         <td class="t-left">${{ rs.price|floatformat:2 }}</td>
                                         <td class="t-left">{{ rs.amount }}</td>
-                                        <td class="t-left">${{ rs.total|floatformat:2 }}</td>
+                                        {% comment %} <td class="t-left">${{ rs.total|floatformat:2 }}</td> {% endcomment %}
                                         <td class="t-left">{{ rs.status }}</td>
                                         <td class="t-left">{{ rs.create_at }}</td>
                                     </tr>
                                 {% endfor %}
                             </table>
-
+                            <div class="row mt-4">
+                                <div class="col">
+                                    <div class="col-auto text-right" style="padding-right:90px;">
+                                        <p class="mb-1 text-dark"><b>Order Details</b></p>
+                                    </div>
+                                    <hr>
+                                    <br>
+                                    <div class="row justify-content-between">
+                                        <div class="flex-sm-col text-right col"style="padding-right:55px;">
+                                            <p class="mb-1"><b>Delivery Fee</b></p>
+                                        </div>
+                                        <div class="flex-sm-col col-auto">
+                                            <p style="font-size:20px;" class="mb-1">$49</p>
+                                        </div>
+                                    </div>
+                                    
+                                    {% comment %} <div class="row justify-content-between">
+                                        <div class="flex-sm-col text-right col">
+                                            <p class="mb-1"> <b>Delivery Fee</b></p>
+                                        </div>
+                                        <div class="flex-sm-col col-auto">
+                                            <p class="mb-1">$49</p>
+                                        </div>
+                                    </div> {% endcomment %}
+                                    <div class="row justify-content-between">
+                                        <div class="flex-sm-col text-right col" style="padding-right:90px;">
+                                            <p class="mb-1"><b>Discount</b></p>
+                                        </div>
+                                        <div class="flex-sm-col col-auto">
+                                            <p style="font-size:20px;" class="mb-1">$0</p>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-between">
+                                        <div class="flex-sm-col text-right col">
+                                            <p class="mb-1"><b>Total(Incl. GST)</b></p>
+                                        </div>
+                                        <div class="flex-sm-col col-auto">
+                                            <p style="color:red;font-size:20px;" class="mb-1">${{ totalf }}</p>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
 						</div>
 					</div>
 				</div>
