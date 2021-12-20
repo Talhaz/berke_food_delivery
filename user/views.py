@@ -193,6 +193,7 @@ def orderdetail(request, id):
     else:
         d=None;
     context = {
+        'subtotal':d-49,
         'totalf':d,
         'order': order,
         'orderItems': orderItems,

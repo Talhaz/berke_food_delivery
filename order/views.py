@@ -13,7 +13,10 @@ def index(request):
 
 
 def ordercompleted(request):
-    setting = Setting.objects.get(pk=1, status='True')
+    try:
+        setting = Setting.objects.get(pk=1, status='True')
+    except:
+        setting=None
     category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:

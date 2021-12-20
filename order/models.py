@@ -15,7 +15,7 @@ class Order(models.Model):
         ('Canceled', 'Canceled'),
     )
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    table_no = models.IntegerField()
+    table_no = models.IntegerField(unique=False,verbose_name="Order No")
     total = models.FloatField()
     status = models.CharField(max_length=10, choices=STATUS, default='New')
     note = models.CharField(blank=True, max_length=100)

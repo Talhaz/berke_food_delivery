@@ -78,15 +78,15 @@
                     {% csrf_token %}
                     <div class="row">
                         {% if request.session.table_no is None %}
-                            <div class="col-md-2" style="margin-left: auto;visibility:hidden;">
+                            <div class="col-md-2" style="margin-left: auto;">
                                 <span class="txt9">
-                                    Table No
+                                    Order No
                                 </span>
                                 <div class="size12 bo2 bo-rad-10 m-t-3 m-b-23">
                                     <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" name="table_no" min="1" value="1" placeholder="1">
                                 </div>
                             </div>
-                            <div class="col-md-2" style="margin-right: 380px;">
+                            <div class="col-md-2" style="margin-right: auto;">
                                 <span class="txt9">
                                     Amount
                                 </span>
@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                         {% else %}
-                            <div class="col-md-2" style="margin-right: 380px;">
+                            <div class="col-md-2" style="margin: auto;">
                             <span class="txt9">
                                 Amount
                             </span>
