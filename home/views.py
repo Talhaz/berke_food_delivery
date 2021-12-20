@@ -11,6 +11,7 @@ from product.models import Product, Category, Images, Comment
 
 
 def index(request):
+    # try:
     sliderData = Product.objects.filter(status='True').order_by('id')[:3]
     # try:
     setting = Setting.objects.get(pk=1, status='True')
@@ -20,11 +21,9 @@ def index(request):
     ourFavorites = sorted(Product.objects.filter(status='True'), key=lambda i: -i.avaragecomment())[:3]
     ourLatestDeliciousFoods = Product.objects.filter(status='True').order_by('-id')[:3]
     current_user = request.user
-    if current_user.id is not None:
+    if current_user.id is not None and current_user.is_superuser is not True:
         profile = UserProfile.objects.get(user_id=current_user.id)
-    else:
-        profile = None
-    context = {
+        context = {
         'setting': setting,
         'category': category,
         'page': 'home',
@@ -32,8 +31,24 @@ def index(request):
         'ourFavorites': ourFavorites,
         'ourLatestDeliciousFoods': ourLatestDeliciousFoods,
         'profile': profile,
-    }
-    return render(request, 'index.html', context)
+        }
+        return render(request, 'index.html', context)
+    elif current_user.id is None:
+        profile = None
+        context = {
+        'setting': setting,
+        'category': category,
+        'page': 'home',
+        'sliderData': sliderData,
+        'ourFavorites': ourFavorites,
+        'ourLatestDeliciousFoods': ourLatestDeliciousFoods,
+        'profile': profile,
+        }
+        return render(request, 'index.html', context)       
+    else:
+        return render(request, '404.html')
+
+    
 
 
 def aboutus(request):
